@@ -37,7 +37,7 @@ stage("Package") {
           }
 stage("Docker build") {
                steps {
-                    sh "docker build -t ajay2012/calculator:${BUILD_TAG} ."
+                    sh "docker build -t ajay2012/calculator:${BUILD_TAG} . "
                }
           }
 stage("Docker run") {
