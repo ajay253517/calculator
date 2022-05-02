@@ -1,3 +1,6 @@
+def BUILD_TAG=$(echo $BUILD_TIMESTAMP | sed 's/ /-/')
+
+
 pipeline {
 agent { node { label 'docker-java' } } 
 stages {
@@ -8,7 +11,7 @@ git  branch: 'feature-*', url: 'https://github.com/ajay253517/calculator-ci-cd.g
 }
 stage("Unit Test"){
 steps {
-sh "./gradlew test"
+sh "echo "My variable is ${BUILD_TAG}""
 }
 }
 stage("RunsOnly"){
