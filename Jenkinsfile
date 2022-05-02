@@ -1,5 +1,5 @@
 pipeline {
-agent { node { label 'centos' } } 
+agent { node { label 'docker-java' } } 
 stages {
 stage("Checkout") {
 steps {
