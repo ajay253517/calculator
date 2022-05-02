@@ -1,4 +1,4 @@
-def BUILD_TAG=$(echo $BUILD_TIMESTAMP | sed 's/ /-/')
+def BUILD_TAG=$(echo BUILD_TIMESTAMP | sed 's/ /-/')
 
 
 pipeline {
