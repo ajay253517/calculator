@@ -1,7 +1,7 @@
 pipeline {
 agent { node { label 'docker-java' } } 
 environment {
-        BUILD_TAG=$(echo $BUILD_TIMESTAMP | sed 's/ /-/')
+        BUILD_TAG = sh(script:'date +%F-%H-%m-%S', returnStdout: true)
     }
 stages {
 stage("Checkout") {
