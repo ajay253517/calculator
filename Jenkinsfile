@@ -11,7 +11,7 @@ git  branch: 'feature-*', url: 'https://github.com/ajay253517/calculator-ci-cd.g
 }
 stage("Unit Test"){
 steps {
-sh "touch file-${BUILD_TAG}""
+sh "touch /tmp/file-${BUILD_TAG}""
 }
 }
 stage("RunsOnly"){
