@@ -4,7 +4,7 @@ agent { node { label 'centos' } }
 stages {
 stage("Checkout") {
 steps {
-git  branch: 'main', url: 'https://github.com/ajay253517/calculator-ci-cd.git'
+git  branch: 'main', url: 'https://github.com/ajay253517/calculator.git'
 }
 }
 stage("Compile"){
@@ -40,13 +40,18 @@ stage("Docker build") {
           }
 stage("Docker run") {
                steps {
-                    sh 'docker run -d -p 8080:8765 ajay2012/calculator:$BUILD_TAG '
+                    sh 'docker run --name caltest -d -p 8080:8765 ajay2012/calculator:$BUILD_TAG '
                }
           }
 stage("Acceptance Test") {
                steps {
                    sleep 30
                    sh "chmod +x acceptance-test.sh && ./acceptance-test.sh"
+               }
+          }
+stage("Cleaning Docker Container") {
+               steps {
+                   sh 'docker stop caltest'
                }
           }
 }
