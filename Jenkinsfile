@@ -1,8 +1,6 @@
 pipeline {
 agent { node { label 'centos' } } 
-environment {
-        BUILD_TAG = sh(script:'date +%F-%H-%m-%S', returnStdout: true)
-    }
+    
 stages {
 stage("Checkout") {
 steps {
@@ -37,12 +35,12 @@ stage("Package") {
           }
 stage("Docker build") {
                steps {
-                    sh 'docker build -t ajay2012/calculator:${BUILD_TAG} . '
+                    sh 'echo $BUILD_TAG && docker build -t ajay2012/calculator:$BUILD_TAG . '
                }
           }
 stage("Docker run") {
                steps {
-                    sh 'docker run -d -p 8080:8765 ajay2012/calculator:${BUILD_TAG} '
+                    sh 'docker run -d -p 8080:8765 ajay2012/calculator:$BUILD_TAG '
                }
           }
 stage("Acceptance Test") {
